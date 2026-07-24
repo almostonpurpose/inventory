@@ -1,0 +1,449 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		127E8D7D229E34A93052A82E /* InventoryPhotoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1B888C7C320F5AEA98C54A /* InventoryPhotoStore.swift */; };
+		17537CD8BB0CAF9AC79ADB1F /* InventoryPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60921DFF68FC70019AF22BDE /* InventoryPhotoView.swift */; };
+		28401C761EF2BAECD4F35187 /* YOLOInventoryDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9F61D1E7B1DAAFB1D9D805 /* YOLOInventoryDetector.swift */; };
+		302E302D1936789D9071F917 /* ScanVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C932F8E338D6F5357FD3F3 /* ScanVideoView.swift */; };
+		566085B84E9065A6F327596A /* InventoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B60FFD7D160D99FDE66A2C /* InventoryItem.swift */; };
+		5B0F69962157C57EE713C5B9 /* UltralyticsYOLO in Frameworks */ = {isa = PBXBuildFile; productRef = B3C1E9A8110E2B401E54C5AE /* UltralyticsYOLO */; };
+		5C001BC5E150852959B706D7 /* VideoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466399D264869A77CD77CCB4 /* VideoPicker.swift */; };
+		720008A5E5657E8E3D961538 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BB7EBE490709BE3C9685B4 /* RootView.swift */; };
+		8AE125EFD82DBC9439136285 /* InsightsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8E6976BD647F2444B671DE /* InsightsView.swift */; };
+		910E9E550AA108FE2608CFD6 /* InventoryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6149123F839727255EA27A8 /* InventoryDetailView.swift */; };
+		950741A29BC9F80A53204F26 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C806A78767AECB4F32CB94EB /* Assets.xcassets */; };
+		98D6A5F8190C43DA22C61C86 /* InventoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70C806F7AD74CA45AA6A3DC /* InventoryStore.swift */; };
+		9CB775A3B057979D1790A4AF /* InventoryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7928AC41B233A87DF974389E /* InventoryApp.swift */; };
+		A0F836A33ECCFC7C5283B0C4 /* AssistantMemoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7805D154352348D568512813 /* AssistantMemoryView.swift */; };
+		A757F13DDB2D62CF626C9E25 /* PhotoScanLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6BF98A7083F68C48EA7725 /* PhotoScanLoader.swift */; };
+		AC60FA82FEDC8B5E38D9116C /* PhotoCameraPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0F7DF31371229314966F3D /* PhotoCameraPicker.swift */; };
+		B597AFDFFAFA29107E03178B /* ItemEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABE76CABEA46616B4E008BE /* ItemEditorView.swift */; };
+		BF634685E022B49E2922B709 /* InventoryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C27C74755044AED785A9233 /* InventoryListView.swift */; };
+		C57EEE6FF34954DAC66F8F9D /* VideoInventoryAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E639B22A5ABE45C0F8965A /* VideoInventoryAnalyzer.swift */; };
+		DC9C0B1E05936DEFC177D5E1 /* WalkthroughVideoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6A1390EA1CD8D925419A29 /* WalkthroughVideoStore.swift */; };
+		EC901E19EECB8F925754E6DD /* HomeMemoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB202EF6D1D03AAD5FB6714 /* HomeMemoryView.swift */; };
+		FE97D1AA189BC6BB99AE3903 /* ReviewDetectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838148BF632FA972033856AE /* ReviewDetectionsView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1EB202EF6D1D03AAD5FB6714 /* HomeMemoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMemoryView.swift; sourceTree = "<group>"; };
+		466399D264869A77CD77CCB4 /* VideoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPicker.swift; sourceTree = "<group>"; };
+		4B1B888C7C320F5AEA98C54A /* InventoryPhotoStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryPhotoStore.swift; sourceTree = "<group>"; };
+		4D6A1390EA1CD8D925419A29 /* WalkthroughVideoStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughVideoStore.swift; sourceTree = "<group>"; };
+		51BB7EBE490709BE3C9685B4 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		60921DFF68FC70019AF22BDE /* InventoryPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryPhotoView.swift; sourceTree = "<group>"; };
+		61E5FBA51A5B8BB7E158BAB0 /* HomeInventory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HomeInventory.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		62C932F8E338D6F5357FD3F3 /* ScanVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanVideoView.swift; sourceTree = "<group>"; };
+		6ED095597EB25F5E985376BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		7805D154352348D568512813 /* AssistantMemoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssistantMemoryView.swift; sourceTree = "<group>"; };
+		7928AC41B233A87DF974389E /* InventoryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryApp.swift; sourceTree = "<group>"; };
+		7C27C74755044AED785A9233 /* InventoryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryListView.swift; sourceTree = "<group>"; };
+		838148BF632FA972033856AE /* ReviewDetectionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDetectionsView.swift; sourceTree = "<group>"; };
+		8D6BF98A7083F68C48EA7725 /* PhotoScanLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoScanLoader.swift; sourceTree = "<group>"; };
+		96E639B22A5ABE45C0F8965A /* VideoInventoryAnalyzer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoInventoryAnalyzer.swift; sourceTree = "<group>"; };
+		9A8E6976BD647F2444B671DE /* InsightsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightsView.swift; sourceTree = "<group>"; };
+		B6149123F839727255EA27A8 /* InventoryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryDetailView.swift; sourceTree = "<group>"; };
+		BABE76CABEA46616B4E008BE /* ItemEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemEditorView.swift; sourceTree = "<group>"; };
+		C70C806F7AD74CA45AA6A3DC /* InventoryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryStore.swift; sourceTree = "<group>"; };
+		C806A78767AECB4F32CB94EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CD9F61D1E7B1DAAFB1D9D805 /* YOLOInventoryDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YOLOInventoryDetector.swift; sourceTree = "<group>"; };
+		E6B60FFD7D160D99FDE66A2C /* InventoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryItem.swift; sourceTree = "<group>"; };
+		FC0F7DF31371229314966F3D /* PhotoCameraPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCameraPicker.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5EA5A69E06B86B4134528C44 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5B0F69962157C57EE713C5B9 /* UltralyticsYOLO in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		34E0572FC6CBED5607679F4B = {
+			isa = PBXGroup;
+			children = (
+				62697855D15BA09DD8DD7454 /* Inventory */,
+				E27800398981639E22C195A6 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		5C8FF6DD9E8BDF223576A3E2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7805D154352348D568512813 /* AssistantMemoryView.swift */,
+				1EB202EF6D1D03AAD5FB6714 /* HomeMemoryView.swift */,
+				9A8E6976BD647F2444B671DE /* InsightsView.swift */,
+				B6149123F839727255EA27A8 /* InventoryDetailView.swift */,
+				7C27C74755044AED785A9233 /* InventoryListView.swift */,
+				60921DFF68FC70019AF22BDE /* InventoryPhotoView.swift */,
+				BABE76CABEA46616B4E008BE /* ItemEditorView.swift */,
+				838148BF632FA972033856AE /* ReviewDetectionsView.swift */,
+				51BB7EBE490709BE3C9685B4 /* RootView.swift */,
+				62C932F8E338D6F5357FD3F3 /* ScanVideoView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		62697855D15BA09DD8DD7454 /* Inventory */ = {
+			isa = PBXGroup;
+			children = (
+				C806A78767AECB4F32CB94EB /* Assets.xcassets */,
+				7928AC41B233A87DF974389E /* InventoryApp.swift */,
+				7FF437303BDED54CA79219E7 /* Models */,
+				FB7E6E81EEFF20614D8F9946 /* Stores */,
+				B516F9A9A941BA67DEA31497 /* Support */,
+				5C8FF6DD9E8BDF223576A3E2 /* Views */,
+			);
+			path = Inventory;
+			sourceTree = "<group>";
+		};
+		7FF437303BDED54CA79219E7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E6B60FFD7D160D99FDE66A2C /* InventoryItem.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B516F9A9A941BA67DEA31497 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				6ED095597EB25F5E985376BB /* Info.plist */,
+				4B1B888C7C320F5AEA98C54A /* InventoryPhotoStore.swift */,
+				FC0F7DF31371229314966F3D /* PhotoCameraPicker.swift */,
+				8D6BF98A7083F68C48EA7725 /* PhotoScanLoader.swift */,
+				96E639B22A5ABE45C0F8965A /* VideoInventoryAnalyzer.swift */,
+				466399D264869A77CD77CCB4 /* VideoPicker.swift */,
+				4D6A1390EA1CD8D925419A29 /* WalkthroughVideoStore.swift */,
+				CD9F61D1E7B1DAAFB1D9D805 /* YOLOInventoryDetector.swift */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		E27800398981639E22C195A6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				61E5FBA51A5B8BB7E158BAB0 /* HomeInventory.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FB7E6E81EEFF20614D8F9946 /* Stores */ = {
+			isa = PBXGroup;
+			children = (
+				C70C806F7AD74CA45AA6A3DC /* InventoryStore.swift */,
+			);
+			path = Stores;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		87B065214FCB9FD6D57DE79C /* HomeInventory */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 375B3B0BE319031D182EEC5F /* Build configuration list for PBXNativeTarget "HomeInventory" */;
+			buildPhases = (
+				F2D1080F720FF091F1C90BD9 /* Sources */,
+				A9A163521D791F43ED1E7C9E /* Resources */,
+				5EA5A69E06B86B4134528C44 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HomeInventory;
+			packageProductDependencies = (
+				B3C1E9A8110E2B401E54C5AE /* UltralyticsYOLO */,
+			);
+			productName = HomeInventory;
+			productReference = 61E5FBA51A5B8BB7E158BAB0 /* HomeInventory.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		18CD449533A8F73991DDD919 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+			};
+			buildConfigurationList = FB5B87D4F0A9D34827899EA5 /* Build configuration list for PBXProject "HomeInventory" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 34E0572FC6CBED5607679F4B;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				8E618B046A70020678A8CD0D /* XCRemoteSwiftPackageReference "yolo-ios-app" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = E27800398981639E22C195A6 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				87B065214FCB9FD6D57DE79C /* HomeInventory */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A9A163521D791F43ED1E7C9E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				950741A29BC9F80A53204F26 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F2D1080F720FF091F1C90BD9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A0F836A33ECCFC7C5283B0C4 /* AssistantMemoryView.swift in Sources */,
+				EC901E19EECB8F925754E6DD /* HomeMemoryView.swift in Sources */,
+				8AE125EFD82DBC9439136285 /* InsightsView.swift in Sources */,
+				9CB775A3B057979D1790A4AF /* InventoryApp.swift in Sources */,
+				910E9E550AA108FE2608CFD6 /* InventoryDetailView.swift in Sources */,
+				566085B84E9065A6F327596A /* InventoryItem.swift in Sources */,
+				BF634685E022B49E2922B709 /* InventoryListView.swift in Sources */,
+				127E8D7D229E34A93052A82E /* InventoryPhotoStore.swift in Sources */,
+				17537CD8BB0CAF9AC79ADB1F /* InventoryPhotoView.swift in Sources */,
+				98D6A5F8190C43DA22C61C86 /* InventoryStore.swift in Sources */,
+				B597AFDFFAFA29107E03178B /* ItemEditorView.swift in Sources */,
+				AC60FA82FEDC8B5E38D9116C /* PhotoCameraPicker.swift in Sources */,
+				A757F13DDB2D62CF626C9E25 /* PhotoScanLoader.swift in Sources */,
+				FE97D1AA189BC6BB99AE3903 /* ReviewDetectionsView.swift in Sources */,
+				720008A5E5657E8E3D961538 /* RootView.swift in Sources */,
+				302E302D1936789D9071F917 /* ScanVideoView.swift in Sources */,
+				C57EEE6FF34954DAC66F8F9D /* VideoInventoryAnalyzer.swift in Sources */,
+				5C001BC5E150852959B706D7 /* VideoPicker.swift in Sources */,
+				DC9C0B1E05936DEFC177D5E1 /* WalkthroughVideoStore.swift in Sources */,
+				28401C761EF2BAECD4F35187 /* YOLOInventoryDetector.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		3FB2E3118D409B79A187CBF1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Inventory/Support/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = app.homeinventory.catalog;
+				PRODUCT_NAME = HomeInventory;
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		40403D744BEA9C10EAC984FB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+		6DBF2D0E0C440AD7AF582120 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Inventory/Support/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = app.homeinventory.catalog;
+				PRODUCT_NAME = HomeInventory;
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		7CD0A663B07DDE26BE718A90 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		375B3B0BE319031D182EEC5F /* Build configuration list for PBXNativeTarget "HomeInventory" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3FB2E3118D409B79A187CBF1 /* Debug */,
+				6DBF2D0E0C440AD7AF582120 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		FB5B87D4F0A9D34827899EA5 /* Build configuration list for PBXProject "HomeInventory" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				40403D744BEA9C10EAC984FB /* Debug */,
+				7CD0A663B07DDE26BE718A90 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8E618B046A70020678A8CD0D /* XCRemoteSwiftPackageReference "yolo-ios-app" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ultralytics/yolo-ios-app.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.9.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B3C1E9A8110E2B401E54C5AE /* UltralyticsYOLO */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8E618B046A70020678A8CD0D /* XCRemoteSwiftPackageReference "yolo-ios-app" */;
+			productName = UltralyticsYOLO;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 18CD449533A8F73991DDD919 /* Project object */;
+}
