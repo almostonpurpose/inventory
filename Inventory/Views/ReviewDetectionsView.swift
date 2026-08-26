@@ -124,14 +124,11 @@ struct ReviewDetectionsView: View {
             return true
         }
 
-        let genericNames: Set<String> = [
-            "unidentified item", "bag", "basket", "bottle", "box", "bucket",
-            "can", "carton", "case", "container", "jar", "package", "packet",
-            "tin", "tube"
-        ]
+        let normalized = proposal.name.normalizedInventoryKey
 
-        return proposal.confidence >= 0.42
-            && !genericNames.contains(proposal.name.normalizedInventoryKey)
+        return proposal.confidence >= ScanTuning.reliableConfidence
+            && normalized != "unidentified item"
+            && !ScanTuning.genericContainerLabels.contains(normalized)
     }
 }
 
@@ -277,7 +274,7 @@ private struct DetectionCard: View {
                     }
 
                     if !proposal.labels.isEmpty {
-                        LabeledContent("Vision Labels", value: proposal.labels.prefix(4).joined(separator: ", "))
+                        LabeledContent("Labels", value: proposal.labels.prefix(4).joined(separator: ", "))
                             .font(.caption)
                     }
                 }

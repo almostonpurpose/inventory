@@ -11,6 +11,11 @@ struct HomeInventoryApp: App {
                 .task {
                     WalkthroughVideoStore.deleteAllManagedCopies()
                     store.load()
+                    #if DEBUG
+                    if ScanSelfTest.isRequested {
+                        await ScanSelfTest.run()
+                    }
+                    #endif
                 }
         }
     }

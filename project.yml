@@ -17,6 +17,8 @@ targets:
     type: application
     platform: iOS
     sources:
+      # Includes Inventory/MLModels (MobileCLIP-S2 encoders), which is gitignored
+      # and populated by scripts/fetch-mobileclip.sh before generating the project.
       - path: Inventory
     dependencies:
       - package: UltralyticsYOLO

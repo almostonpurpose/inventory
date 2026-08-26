@@ -21,16 +21,22 @@ See [HANDOFF.md](HANDOFF.md) for the current architecture notes, known detector 
 
 ## Build
 
-1. Generate the Xcode project:
+1. Fetch the MobileCLIP-S2 Core ML encoders (one-time, ~210 MB, gitignored):
+
+   ```sh
+   ./scripts/fetch-mobileclip.sh
+   ```
+
+2. Generate the Xcode project:
 
    ```sh
    xcodegen generate
    ```
 
-2. Open `HomeInventory.xcodeproj`.
-3. Select your development team in Signing & Capabilities.
-4. Choose your iPhone as the run destination.
-5. Build and run.
+3. Open `HomeInventory.xcodeproj`.
+4. Select your development team in Signing & Capabilities.
+5. Choose your iPhone as the run destination.
+6. Build and run.
 
 ## Notes
 

@@ -198,6 +198,7 @@ enum ItemCondition: String, CaseIterable, Codable, Identifiable {
 enum DetectionKind: String, Codable, Hashable {
     case yoloObject = "YOLO Object"
     case objectCrop = "Object Crop"
+    case subjectLift = "Subject"
     case frameFallback = "Wide Frame"
     case manual = "Manual"
 }

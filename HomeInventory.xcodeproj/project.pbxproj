@@ -7,10 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		024D07D75715B13903E1F4D3 /* clip-vocab.json in Resources */ = {isa = PBXBuildFile; fileRef = C393B8CE5EAE844CE3430D00 /* clip-vocab.json */; };
 		127E8D7D229E34A93052A82E /* InventoryPhotoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1B888C7C320F5AEA98C54A /* InventoryPhotoStore.swift */; };
+		13F93A5F4B9B8D47104F7E7A /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00238BCDDBE4CE14DDF2601 /* Utils.swift */; };
 		17537CD8BB0CAF9AC79ADB1F /* InventoryPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60921DFF68FC70019AF22BDE /* InventoryPhotoView.swift */; };
+		18EF9AC18322B78FE8EFCC08 /* clip-merges.txt in Resources */ = {isa = PBXBuildFile; fileRef = 78E25F287DC335DDEF2E257D /* clip-merges.txt */; };
+		1D146B30C6A5D98D4E07AAA4 /* mobileclip_s2_image.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = CF3BEF50D026D3F2F16CEBE4 /* mobileclip_s2_image.mlpackage */; };
 		28401C761EF2BAECD4F35187 /* YOLOInventoryDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9F61D1E7B1DAAFB1D9D805 /* YOLOInventoryDetector.swift */; };
+		29AE30183D7F46B8A5F0821F /* CLIPTokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B73CBED568E6BAB7EC7433A /* CLIPTokenizer.swift */; };
 		302E302D1936789D9071F917 /* ScanVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C932F8E338D6F5357FD3F3 /* ScanVideoView.swift */; };
+		4BF8F5609CE1EA9FA1D49F6C /* MobileCLIPClassifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E69B33749287C0DD9CAB44 /* MobileCLIPClassifier.swift */; };
 		566085B84E9065A6F327596A /* InventoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B60FFD7D160D99FDE66A2C /* InventoryItem.swift */; };
 		5B0F69962157C57EE713C5B9 /* UltralyticsYOLO in Frameworks */ = {isa = PBXBuildFile; productRef = B3C1E9A8110E2B401E54C5AE /* UltralyticsYOLO */; };
 		5C001BC5E150852959B706D7 /* VideoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466399D264869A77CD77CCB4 /* VideoPicker.swift */; };
@@ -19,6 +25,7 @@
 		910E9E550AA108FE2608CFD6 /* InventoryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6149123F839727255EA27A8 /* InventoryDetailView.swift */; };
 		950741A29BC9F80A53204F26 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C806A78767AECB4F32CB94EB /* Assets.xcassets */; };
 		98D6A5F8190C43DA22C61C86 /* InventoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70C806F7AD74CA45AA6A3DC /* InventoryStore.swift */; };
+		9BC3F16768B8000F1A217B97 /* GPT2ByteEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87409AF1E0E4554C9E2EF4A /* GPT2ByteEncoder.swift */; };
 		9CB775A3B057979D1790A4AF /* InventoryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7928AC41B233A87DF974389E /* InventoryApp.swift */; };
 		A0F836A33ECCFC7C5283B0C4 /* AssistantMemoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7805D154352348D568512813 /* AssistantMemoryView.swift */; };
 		A757F13DDB2D62CF626C9E25 /* PhotoScanLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6BF98A7083F68C48EA7725 /* PhotoScanLoader.swift */; };
@@ -26,8 +33,12 @@
 		B597AFDFFAFA29107E03178B /* ItemEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABE76CABEA46616B4E008BE /* ItemEditorView.swift */; };
 		BF634685E022B49E2922B709 /* InventoryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C27C74755044AED785A9233 /* InventoryListView.swift */; };
 		C57EEE6FF34954DAC66F8F9D /* VideoInventoryAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E639B22A5ABE45C0F8965A /* VideoInventoryAnalyzer.swift */; };
+		DC657C72EFD0479E94004B31 /* ScanSelfTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2BEAA4A17D15DB88A68464 /* ScanSelfTest.swift */; };
 		DC9C0B1E05936DEFC177D5E1 /* WalkthroughVideoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6A1390EA1CD8D925419A29 /* WalkthroughVideoStore.swift */; };
+		EAF73B767CC5A85FBC6FD602 /* household-vocabulary.json in Resources */ = {isa = PBXBuildFile; fileRef = F658E4DF92577A71827295DF /* household-vocabulary.json */; };
 		EC901E19EECB8F925754E6DD /* HomeMemoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EB202EF6D1D03AAD5FB6714 /* HomeMemoryView.swift */; };
+		F7752DFEDAC6FDE44A90B3A3 /* mobileclip_s2_text.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = D575775B2A24C57210F4E5E0 /* mobileclip_s2_text.mlpackage */; };
+		F785878B071F0EDB0C84B391 /* ScanTuning.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44DE7B2E51371E41DEDB527 /* ScanTuning.swift */; };
 		FE97D1AA189BC6BB99AE3903 /* ReviewDetectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838148BF632FA972033856AE /* ReviewDetectionsView.swift */; };
 /* End PBXBuildFile section */
 
@@ -38,22 +49,33 @@
 		4D6A1390EA1CD8D925419A29 /* WalkthroughVideoStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughVideoStore.swift; sourceTree = "<group>"; };
 		51BB7EBE490709BE3C9685B4 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		60921DFF68FC70019AF22BDE /* InventoryPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryPhotoView.swift; sourceTree = "<group>"; };
-		61E5FBA51A5B8BB7E158BAB0 /* HomeInventory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HomeInventory.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		61E5FBA51A5B8BB7E158BAB0 /* HomeInventory.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = HomeInventory.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		62C932F8E338D6F5357FD3F3 /* ScanVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanVideoView.swift; sourceTree = "<group>"; };
+		6B73CBED568E6BAB7EC7433A /* CLIPTokenizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLIPTokenizer.swift; sourceTree = "<group>"; };
 		6ED095597EB25F5E985376BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		7805D154352348D568512813 /* AssistantMemoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssistantMemoryView.swift; sourceTree = "<group>"; };
+		78E25F287DC335DDEF2E257D /* clip-merges.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "clip-merges.txt"; sourceTree = "<group>"; };
 		7928AC41B233A87DF974389E /* InventoryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryApp.swift; sourceTree = "<group>"; };
 		7C27C74755044AED785A9233 /* InventoryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryListView.swift; sourceTree = "<group>"; };
 		838148BF632FA972033856AE /* ReviewDetectionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDetectionsView.swift; sourceTree = "<group>"; };
 		8D6BF98A7083F68C48EA7725 /* PhotoScanLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoScanLoader.swift; sourceTree = "<group>"; };
 		96E639B22A5ABE45C0F8965A /* VideoInventoryAnalyzer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoInventoryAnalyzer.swift; sourceTree = "<group>"; };
 		9A8E6976BD647F2444B671DE /* InsightsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightsView.swift; sourceTree = "<group>"; };
+		9D2BEAA4A17D15DB88A68464 /* ScanSelfTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanSelfTest.swift; sourceTree = "<group>"; };
+		B0E69B33749287C0DD9CAB44 /* MobileCLIPClassifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileCLIPClassifier.swift; sourceTree = "<group>"; };
 		B6149123F839727255EA27A8 /* InventoryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryDetailView.swift; sourceTree = "<group>"; };
 		BABE76CABEA46616B4E008BE /* ItemEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemEditorView.swift; sourceTree = "<group>"; };
+		C393B8CE5EAE844CE3430D00 /* clip-vocab.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "clip-vocab.json"; sourceTree = "<group>"; };
 		C70C806F7AD74CA45AA6A3DC /* InventoryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryStore.swift; sourceTree = "<group>"; };
 		C806A78767AECB4F32CB94EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CD9F61D1E7B1DAAFB1D9D805 /* YOLOInventoryDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YOLOInventoryDetector.swift; sourceTree = "<group>"; };
+		CF3BEF50D026D3F2F16CEBE4 /* mobileclip_s2_image.mlpackage */ = {isa = PBXFileReference; path = mobileclip_s2_image.mlpackage; sourceTree = "<group>"; };
+		D44DE7B2E51371E41DEDB527 /* ScanTuning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanTuning.swift; sourceTree = "<group>"; };
+		D575775B2A24C57210F4E5E0 /* mobileclip_s2_text.mlpackage */ = {isa = PBXFileReference; path = mobileclip_s2_text.mlpackage; sourceTree = "<group>"; };
+		E00238BCDDBE4CE14DDF2601 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		E6B60FFD7D160D99FDE66A2C /* InventoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryItem.swift; sourceTree = "<group>"; };
+		F658E4DF92577A71827295DF /* household-vocabulary.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "household-vocabulary.json"; sourceTree = "<group>"; };
+		F87409AF1E0E4554C9E2EF4A /* GPT2ByteEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPT2ByteEncoder.swift; sourceTree = "<group>"; };
 		FC0F7DF31371229314966F3D /* PhotoCameraPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCameraPicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -69,12 +91,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1F17AF8F010A10E7AAC17DC4 /* MLModels */ = {
+			isa = PBXGroup;
+			children = (
+				CF3BEF50D026D3F2F16CEBE4 /* mobileclip_s2_image.mlpackage */,
+				D575775B2A24C57210F4E5E0 /* mobileclip_s2_text.mlpackage */,
+			);
+			path = MLModels;
+			sourceTree = "<group>";
+		};
 		34E0572FC6CBED5607679F4B = {
 			isa = PBXGroup;
 			children = (
 				62697855D15BA09DD8DD7454 /* Inventory */,
 				E27800398981639E22C195A6 /* Products */,
 			);
+			sourceTree = "<group>";
+		};
+		56C3C29766A2B231A9535B6D /* MobileCLIP */ = {
+			isa = PBXGroup;
+			children = (
+				6B73CBED568E6BAB7EC7433A /* CLIPTokenizer.swift */,
+				F87409AF1E0E4554C9E2EF4A /* GPT2ByteEncoder.swift */,
+				E00238BCDDBE4CE14DDF2601 /* Utils.swift */,
+				B118C1460E8879E85DC0E058 /* Resources */,
+			);
+			path = MobileCLIP;
 			sourceTree = "<group>";
 		};
 		5C8FF6DD9E8BDF223576A3E2 /* Views */ = {
@@ -99,7 +141,9 @@
 			children = (
 				C806A78767AECB4F32CB94EB /* Assets.xcassets */,
 				7928AC41B233A87DF974389E /* InventoryApp.swift */,
+				1F17AF8F010A10E7AAC17DC4 /* MLModels */,
 				7FF437303BDED54CA79219E7 /* Models */,
+				8CC5E6B326E05846627691D9 /* Resources */,
 				FB7E6E81EEFF20614D8F9946 /* Stores */,
 				B516F9A9A941BA67DEA31497 /* Support */,
 				5C8FF6DD9E8BDF223576A3E2 /* Views */,
@@ -115,17 +159,38 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		8CC5E6B326E05846627691D9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F658E4DF92577A71827295DF /* household-vocabulary.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		B118C1460E8879E85DC0E058 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				78E25F287DC335DDEF2E257D /* clip-merges.txt */,
+				C393B8CE5EAE844CE3430D00 /* clip-vocab.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		B516F9A9A941BA67DEA31497 /* Support */ = {
 			isa = PBXGroup;
 			children = (
 				6ED095597EB25F5E985376BB /* Info.plist */,
 				4B1B888C7C320F5AEA98C54A /* InventoryPhotoStore.swift */,
+				B0E69B33749287C0DD9CAB44 /* MobileCLIPClassifier.swift */,
 				FC0F7DF31371229314966F3D /* PhotoCameraPicker.swift */,
 				8D6BF98A7083F68C48EA7725 /* PhotoScanLoader.swift */,
+				9D2BEAA4A17D15DB88A68464 /* ScanSelfTest.swift */,
+				D44DE7B2E51371E41DEDB527 /* ScanTuning.swift */,
 				96E639B22A5ABE45C0F8965A /* VideoInventoryAnalyzer.swift */,
 				466399D264869A77CD77CCB4 /* VideoPicker.swift */,
 				4D6A1390EA1CD8D925419A29 /* WalkthroughVideoStore.swift */,
 				CD9F61D1E7B1DAAFB1D9D805 /* YOLOInventoryDetector.swift */,
+				56C3C29766A2B231A9535B6D /* MobileCLIP */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -177,6 +242,8 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+				};
 			};
 			buildConfigurationList = FB5B87D4F0A9D34827899EA5 /* Build configuration list for PBXProject "HomeInventory" */;
 			developmentRegion = en;
@@ -206,6 +273,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				950741A29BC9F80A53204F26 /* Assets.xcassets in Resources */,
+				18EF9AC18322B78FE8EFCC08 /* clip-merges.txt in Resources */,
+				024D07D75715B13903E1F4D3 /* clip-vocab.json in Resources */,
+				EAF73B767CC5A85FBC6FD602 /* household-vocabulary.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,6 +287,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A0F836A33ECCFC7C5283B0C4 /* AssistantMemoryView.swift in Sources */,
+				29AE30183D7F46B8A5F0821F /* CLIPTokenizer.swift in Sources */,
+				9BC3F16768B8000F1A217B97 /* GPT2ByteEncoder.swift in Sources */,
 				EC901E19EECB8F925754E6DD /* HomeMemoryView.swift in Sources */,
 				8AE125EFD82DBC9439136285 /* InsightsView.swift in Sources */,
 				9CB775A3B057979D1790A4AF /* InventoryApp.swift in Sources */,
@@ -227,15 +299,21 @@
 				17537CD8BB0CAF9AC79ADB1F /* InventoryPhotoView.swift in Sources */,
 				98D6A5F8190C43DA22C61C86 /* InventoryStore.swift in Sources */,
 				B597AFDFFAFA29107E03178B /* ItemEditorView.swift in Sources */,
+				4BF8F5609CE1EA9FA1D49F6C /* MobileCLIPClassifier.swift in Sources */,
 				AC60FA82FEDC8B5E38D9116C /* PhotoCameraPicker.swift in Sources */,
 				A757F13DDB2D62CF626C9E25 /* PhotoScanLoader.swift in Sources */,
 				FE97D1AA189BC6BB99AE3903 /* ReviewDetectionsView.swift in Sources */,
 				720008A5E5657E8E3D961538 /* RootView.swift in Sources */,
+				DC657C72EFD0479E94004B31 /* ScanSelfTest.swift in Sources */,
+				F785878B071F0EDB0C84B391 /* ScanTuning.swift in Sources */,
 				302E302D1936789D9071F917 /* ScanVideoView.swift in Sources */,
+				13F93A5F4B9B8D47104F7E7A /* Utils.swift in Sources */,
 				C57EEE6FF34954DAC66F8F9D /* VideoInventoryAnalyzer.swift in Sources */,
 				5C001BC5E150852959B706D7 /* VideoPicker.swift in Sources */,
 				DC9C0B1E05936DEFC177D5E1 /* WalkthroughVideoStore.swift in Sources */,
 				28401C761EF2BAECD4F35187 /* YOLOInventoryDetector.swift in Sources */,
+				1D146B30C6A5D98D4E07AAA4 /* mobileclip_s2_image.mlpackage in Sources */,
+				F7752DFEDAC6FDE44A90B3A3 /* mobileclip_s2_text.mlpackage in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -522,23 +522,7 @@ struct ScanVideoView: View {
 
     private func proposalNameIsGeneric(_ name: String) -> Bool {
         let normalized = name.normalizedInventoryKey
-        return [
-            "unidentified item",
-            "bag",
-            "basket",
-            "bottle",
-            "box",
-            "bucket",
-            "can",
-            "carton",
-            "case",
-            "container",
-            "jar",
-            "package",
-            "packet",
-            "tin",
-            "tube"
-        ].contains(normalized)
+        return normalized == "unidentified item" || ScanTuning.genericContainerLabels.contains(normalized)
     }
 
     private func proposalWithDefaultSelection(_ proposal: DetectedInventoryItem) -> DetectedInventoryItem {
@@ -552,7 +536,7 @@ struct ScanVideoView: View {
             return true
         }
 
-        return proposal.confidence >= 0.42 && !proposalNameIsGeneric(proposal.name)
+        return proposal.confidence >= ScanTuning.reliableConfidence && !proposalNameIsGeneric(proposal.name)
     }
 
     private func mergeProposal(at index: Int, with incoming: DetectedInventoryItem) {
@@ -1054,29 +1038,17 @@ private struct LiveScanDetection: Identifiable, Hashable {
 
     var isUseful: Bool {
         let area = normalizedBox.width * normalizedBox.height
-        let ignored = [
-            "Person", "Human", "Face", "Hand", "Chair", "Couch", "Dining Table",
-            "Bed", "Toilet", "Sink", "Refrigerator", "Oven"
-        ]
 
         return confidence >= 0.16
             && area >= 0.003
             && area <= 0.88
             && normalizedBox.width >= 0.035
             && normalizedBox.height >= 0.035
-            && !ignored.contains(label)
+            && !ScanTuning.ignoredDetectorLabels.contains(label)
     }
 
     var isWeakIdentity: Bool {
-        let weakLabels: Set<String> = [
-            "appliance", "artifact", "box", "clothing", "container", "cord",
-            "currency", "device", "electronic device", "equipment", "food",
-            "furniture", "goods", "home appliance", "instrument", "item",
-            "material", "object", "package", "paper", "plastic", "product",
-            "textile", "thing", "tool"
-        ]
-
-        return weakLabels.contains(label.normalizedInventoryKey)
+        ScanTuning.weakIdentityLabels.contains(label.normalizedInventoryKey)
     }
 
     mutating func updateState() {

@@ -63,6 +63,8 @@ struct VideoInventoryAnalyzer {
         let videoName = videoURL.lastPathComponent.isEmpty ? "Walkthrough video" : videoURL.lastPathComponent
         await progress(0.04, "Preparing YOLO detector")
         let useYOLO = await YOLOInventoryDetector.shared.prepare()
+        await progress(0.05, "Preparing identifier")
+        _ = await MobileCLIPClassifier.shared.prepare()
 
         for (index, time) in times.enumerated() {
             try Task.checkCancellation()
@@ -79,7 +81,7 @@ struct VideoInventoryAnalyzer {
                 for candidate in objectCandidates.prefix(5) {
                     try Task.checkCancellation()
 
-                    guard let finding = try analyze(
+                    guard let finding = try await analyze(
                         candidate: candidate,
                         timecode: timecode,
                         room: room,
@@ -148,6 +150,8 @@ struct VideoInventoryAnalyzer {
         var usableFrames = 0
         await progress(0.04, "Preparing YOLO detector")
         let useYOLO = await YOLOInventoryDetector.shared.prepare()
+        await progress(0.05, "Preparing identifier")
+        _ = await MobileCLIPClassifier.shared.prepare()
 
         for (index, input) in images.enumerated() {
             try Task.checkCancellation()
@@ -162,7 +166,7 @@ struct VideoInventoryAnalyzer {
             for candidate in objectCandidates.prefix(8) {
                 try Task.checkCancellation()
 
-                guard let finding = try analyze(
+                guard let finding = try await analyze(
                     candidate: candidate,
                     timecode: timecode,
                     room: room,
@@ -268,6 +272,10 @@ struct VideoInventoryAnalyzer {
             return yoloCandidates
         }
 
+        if let liftedCandidates = subjectLiftCandidates(from: frame), !liftedCandidates.isEmpty {
+            return liftedCandidates
+        }
+
         return saliencyObjectCandidates(from: frame)
     }
 
@@ -302,6 +310,103 @@ struct VideoInventoryAnalyzer {
         } catch {
             return nil
         }
+    }
+
+    /// Cuts one candidate per foreground instance found by subject lifting.
+    /// Returns nil when the request fails or finds nothing usable, so the
+    /// older objectness-saliency path can take over.
+    private static func subjectLiftCandidates(from frame: CGImage) -> [ObjectCandidate]? {
+        let request = VNGenerateForegroundInstanceMaskRequest()
+        let handler = VNImageRequestHandler(cgImage: frame, orientation: .up, options: [:])
+
+        do {
+            try handler.perform([request])
+        } catch {
+            return nil
+        }
+
+        guard let observation = request.results?.first, !observation.allInstances.isEmpty else {
+            return nil
+        }
+
+        var boxes: [CGRect] = []
+        for instanceIndex in observation.allInstances {
+            guard let mask = try? observation.generateMask(forInstances: IndexSet(integer: instanceIndex)),
+                  let box = normalizedBoundingBox(ofMask: mask) else {
+                continue
+            }
+            boxes.append(box)
+        }
+
+        let distinctBoxes = boxes
+            .filter(isUsableObjectBox)
+            .sorted { ($0.width * $0.height) > ($1.width * $1.height) }
+            .reduce(into: [CGRect]()) { result, box in
+                guard result.allSatisfy({ intersectionOverUnion($0, box) < 0.55 }) else {
+                    return
+                }
+                result.append(box)
+            }
+
+        let cropped = distinctBoxes.compactMap { box -> ObjectCandidate? in
+            guard let crop = cropTopLeftNormalized(frame, to: box) else {
+                return nil
+            }
+
+            return ObjectCandidate(image: crop, boundingBox: NormalizedRect(box), detectionKind: .subjectLift)
+        }
+
+        return cropped.isEmpty ? nil : cropped
+    }
+
+    /// Bounding box of the mask's covered pixels, normalized top-left.
+    private static func normalizedBoundingBox(ofMask mask: CVPixelBuffer) -> CGRect? {
+        CVPixelBufferLockBaseAddress(mask, .readOnly)
+        defer {
+            CVPixelBufferUnlockBaseAddress(mask, .readOnly)
+        }
+
+        let width = CVPixelBufferGetWidth(mask)
+        let height = CVPixelBufferGetHeight(mask)
+
+        guard width > 0, height > 0, let baseAddress = CVPixelBufferGetBaseAddress(mask) else {
+            return nil
+        }
+
+        let bytesPerRow = CVPixelBufferGetBytesPerRow(mask)
+        let isFloat = CVPixelBufferGetPixelFormatType(mask) == kCVPixelFormatType_OneComponent32Float
+        var minX = width
+        var minY = height
+        var maxX = -1
+        var maxY = -1
+
+        for y in 0..<height {
+            let row = baseAddress.advanced(by: y * bytesPerRow)
+
+            for x in 0..<width {
+                let covered = isFloat
+                    ? row.assumingMemoryBound(to: Float.self)[x] > 0.5
+                    : row.assumingMemoryBound(to: UInt8.self)[x] > 127
+
+                if covered {
+                    minX = min(minX, x)
+                    minY = min(minY, y)
+                    maxX = max(maxX, x)
+                    maxY = max(maxY, y)
+                }
+            }
+        }
+
+        guard maxX >= minX, maxY >= minY else {
+            return nil
+        }
+
+        return CGRect(
+            x: Double(minX) / Double(width),
+            y: Double(minY) / Double(height),
+            width: Double(maxX - minX + 1) / Double(width),
+            height: Double(maxY - minY + 1) / Double(height)
+        )
     }
 
     private static func saliencyObjectCandidates(from frame: CGImage) -> [ObjectCandidate] {
@@ -353,8 +458,8 @@ struct VideoInventoryAnalyzer {
         scanID: UUID,
         sourceVideoName: String,
         cameraMotion: CaptureMotionSample?
-    ) throws -> ObjectFinding? {
-        let analysis = try analyzeImage(candidate.image, needsClassification: candidate.detectorLabel == nil)
+    ) async throws -> ObjectFinding? {
+        let analysis = await analyzeImage(candidate.image)
 
         guard analysis.hasFindings || candidate.detectorLabel != nil else {
             return nil
@@ -386,9 +491,13 @@ struct VideoInventoryAnalyzer {
             barcodes: analysis.barcodes
         )
         let condition = ItemCondition.suggested(labels: labels, recognizedText: text)
-        let detectedCategory = InventoryCategory.suggested(for: "\(name) \(labels.joined(separator: " ")) \(text.joined(separator: " "))")
+        let acceptedPrediction = analysis.clipPredictions.first(where: {
+            $0.cosine >= ScanTuning.clipAcceptCosine && $0.name == name
+        })
+        let detectedCategory = acceptedPrediction?.category
+            ?? InventoryCategory.suggested(for: "\(name) \(labels.joined(separator: " ")) \(text.joined(separator: " "))")
         let category = mission.suggestedCategory ?? detectedCategory
-        let needsDetailScan = confidence < 0.42
+        let needsDetailScan = confidence < ScanTuning.reliableConfidence
             || candidate.detectionKind == .frameFallback
             || isGenericName(name)
             || (candidate.detectionKind == .yoloObject && text.isEmpty && category == .food)
@@ -428,47 +537,44 @@ struct VideoInventoryAnalyzer {
         )
     }
 
-    private static func analyzeImage(_ image: CGImage, needsClassification: Bool) throws -> FrameAnalysis {
-        let textRequest = VNRecognizeTextRequest()
-        textRequest.recognitionLevel = .accurate
-        textRequest.usesLanguageCorrection = true
-        textRequest.minimumTextHeight = 0.012
+    private static func analyzeImage(_ image: CGImage) async -> FrameAnalysis {
+        // OCR and barcodes run off the caller's executor; Vision's perform is
+        // synchronous. They are corroborating evidence, so a Vision failure
+        // (e.g. no inference context on the simulator) degrades to empty
+        // results instead of aborting the scan.
+        let (texts, barcodes) = await Task.detached(priority: .userInitiated) { () -> ([String], [String]) in
+            let textRequest = VNRecognizeTextRequest()
+            textRequest.recognitionLevel = .accurate
+            textRequest.usesLanguageCorrection = true
+            textRequest.minimumTextHeight = 0.012
 
-        let barcodeRequest = VNDetectBarcodesRequest()
-        var requests: [VNRequest] = [textRequest, barcodeRequest]
+            let barcodeRequest = VNDetectBarcodesRequest()
+            let handler = VNImageRequestHandler(cgImage: image, orientation: .up, options: [:])
 
-        let classifyRequest: VNClassifyImageRequest?
-        if needsClassification {
-            let request = VNClassifyImageRequest()
-            classifyRequest = request
-            requests.insert(request, at: 0)
-        } else {
-            classifyRequest = nil
-        }
+            do {
+                try handler.perform([textRequest, barcodeRequest])
+            } catch {
+                return ([], [])
+            }
 
-        let handler = VNImageRequestHandler(cgImage: image, orientation: .up, options: [:])
-        try handler.perform(requests)
-
-        let labels = (classifyRequest?.results ?? [])
-            .compactMap { observation -> LabeledFinding? in
-                guard observation.confidence >= 0.14, let cleanName = cleanVisionLabel(observation.identifier) else {
-                    return nil
+            let texts = (textRequest.results ?? [])
+                .compactMap { observation in
+                    observation.topCandidates(1).first?.string
                 }
-                return LabeledFinding(name: cleanName, confidence: Double(observation.confidence))
-            }
+                .compactMap(cleanTextCandidate)
 
-        let texts = (textRequest.results ?? [])
-            .compactMap { observation in
-                observation.topCandidates(1).first?.string
-            }
-            .compactMap(cleanTextCandidate)
+            let barcodes = (barcodeRequest.results ?? [])
+                .compactMap(\.payloadStringValue)
+                .map(\.trimmed)
+                .filter { !$0.isEmpty }
 
-        let barcodes = (barcodeRequest.results ?? [])
-            .compactMap(\.payloadStringValue)
-            .map(\.trimmed)
-            .filter { !$0.isEmpty }
+            return (texts, barcodes)
+        }.value
 
-        return FrameAnalysis(labels: labels, recognizedText: texts, barcodes: barcodes)
+        let predictions = await MobileCLIPClassifier.shared.classify(image, topK: 3)
+        let labels = predictions.map { LabeledFinding(name: $0.name, confidence: $0.confidence) }
+
+        return FrameAnalysis(clipPredictions: predictions, labels: labels, recognizedText: texts, barcodes: barcodes)
     }
 
     private static func bestName(
@@ -476,21 +582,24 @@ struct VideoInventoryAnalyzer {
         detectorLabel: String?,
         detectionKind: DetectionKind
     ) -> String? {
-        let visualLabels = ([detectorLabel].compactMap { $0 } + analysis.labels.map(\.name))
-            .map(\.inventoryTitleCased)
-        let usableVisualLabel = visualLabels.first(where: isUsableIdentityName)
-        let textSpecificName = specificItemName(from: analysis.recognizedText)
+        let detectorName = detectorLabel?.inventoryTitleCased
+        let clipTop = analysis.clipPredictions.first
 
-        if let usableVisualLabel, !genericContainerLabels.contains(usableVisualLabel.normalizedInventoryKey) {
-            return usableVisualLabel
+        if let clipTop, clipTop.cosine >= ScanTuning.clipAcceptCosine {
+            return clipTop.name
         }
 
-        if let textSpecificName {
+        if let textSpecificName = specificItemName(from: analysis.recognizedText) {
             return textSpecificName
         }
 
-        if let usableVisualLabel {
-            return usableVisualLabel
+        // Above the reject floor but below accept: still the best guess available.
+        if let clipTop {
+            return clipTop.name
+        }
+
+        if let detectorName, isUsableIdentityName(detectorName) {
+            return detectorName
         }
 
         if let barcode = analysis.barcodes.first {
@@ -501,7 +610,7 @@ struct VideoInventoryAnalyzer {
             return nil
         }
 
-        if visualLabels.contains(where: isWeakIdentityEvidence) {
+        if let detectorName, isWeakIdentityEvidence(detectorName) {
             return "Unidentified item"
         }
 
@@ -621,15 +730,11 @@ struct VideoInventoryAnalyzer {
 
     private static func isUsefulYOLODetection(_ detection: YOLOInventoryDetection) -> Bool {
         let area = detection.normalizedBox.width * detection.normalizedBox.height
-        let ignored = [
-            "Person", "Human", "Face", "Hand", "Chair", "Couch", "Dining Table",
-            "Bed", "Toilet", "Sink", "Refrigerator", "Oven"
-        ]
 
         return detection.confidence >= 0.22
             && area >= 0.004
             && area <= 0.88
-            && !ignored.contains(detection.label)
+            && !ScanTuning.ignoredDetectorLabels.contains(detection.label)
     }
 
     private static func isUsefulSeedDetection(_ detection: ScanSeedDetection) -> Bool {
@@ -658,86 +763,14 @@ struct VideoInventoryAnalyzer {
         return intersectionArea / unionArea
     }
 
-    private static func cleanVisionLabel(_ identifier: String) -> String? {
-        let firstLabel = identifier
-            .components(separatedBy: ",")
-            .first?
-            .replacingOccurrences(of: "_", with: " ")
-            .replacingOccurrences(of: "-", with: " ")
-            .trimmed
-            .lowercased()
-
-        guard let firstLabel, !firstLabel.isEmpty else {
-            return nil
-        }
-
-        let ignored = [
-            "indoor", "outdoor", "room", "wall", "floor", "ceiling", "window",
-            "person", "people", "human", "face", "hand", "skin", "scene",
-            "structure", "building", "background", "close up", "photograph",
-            "pattern", "texture", "display", "screen"
-        ]
-
-        guard !ignored.contains(firstLabel), firstLabel.count > 2 else {
-            return nil
-        }
-
-        return firstLabel.inventoryTitleCased
-    }
-
     private static func isUsableIdentityName(_ name: String) -> Bool {
         let normalized = name.normalizedInventoryKey
-        return !normalized.isEmpty && !weakIdentityLabels.contains(normalized)
+        return !normalized.isEmpty && !ScanTuning.weakIdentityLabels.contains(normalized)
     }
 
     private static func isWeakIdentityEvidence(_ name: String) -> Bool {
-        weakIdentityLabels.contains(name.normalizedInventoryKey)
+        ScanTuning.weakIdentityLabels.contains(name.normalizedInventoryKey)
     }
-
-    private static let genericContainerLabels: Set<String> = [
-        "bag",
-        "basket",
-        "bottle",
-        "box",
-        "bucket",
-        "can",
-        "carton",
-        "case",
-        "container",
-        "jar",
-        "package",
-        "packet",
-        "tin",
-        "tube"
-    ]
-
-    private static let weakIdentityLabels: Set<String> = [
-        "appliance",
-        "artifact",
-        "box",
-        "clothing",
-        "container",
-        "cord",
-        "currency",
-        "device",
-        "electronic device",
-        "equipment",
-        "food",
-        "furniture",
-        "goods",
-        "home appliance",
-        "instrument",
-        "item",
-        "material",
-        "object",
-        "package",
-        "paper",
-        "plastic",
-        "product",
-        "textile",
-        "thing",
-        "tool"
-    ]
 
     private static func specificItemName(from recognizedText: [String]) -> String? {
         let text = recognizedText
@@ -844,7 +877,7 @@ struct VideoInventoryAnalyzer {
 
     private static func isGenericName(_ name: String) -> Bool {
         let normalized = name.normalizedInventoryKey
-        return normalized == "unidentified item" || weakIdentityLabels.contains(normalized)
+        return normalized == "unidentified item" || ScanTuning.weakIdentityLabels.contains(normalized)
     }
 
     private static func plausibleBrand(from text: [String], itemName: String) -> String? {
@@ -988,6 +1021,7 @@ private struct ObjectFinding {
 }
 
 private struct FrameAnalysis {
+    var clipPredictions: [CLIPPrediction]
     var labels: [LabeledFinding]
     var recognizedText: [String]
     var barcodes: [String]
